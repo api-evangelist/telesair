@@ -1,0 +1,23 @@
+generated: '2026-08-30'
+method: searched
+source: https://www.telesair.com/ (full pages-sitemap walked 2026-08-30)
+plan_count: 0
+plans: []
+note: >-
+  Telesair publishes no plans, tiers or pricing of any kind - neither for an API (it has none) nor
+  for its hardware. Every page in the site's own pages-sitemap.xml was enumerated
+  (home, /product, /avea-filter, /about-1, /team-4, /faqs, /blog, /newsletter, /resources, /privacy,
+  /contact-7) and none is a pricing page. Bonhawa is sold to US hospitals through an exclusive
+  distribution agreement with Tri-anim Health Services rather than direct or self-service, so the
+  commercial motion is distributor-mediated and no public price list exists. An honest zero.
+evidence:
+- url: https://www.telesair.com/pages-sitemap.xml
+  status: 200
+  note: 11 pages, no /pricing or /plans entry
+- url: https://www.telesair.com/product
+  status: 200
+  note: product specifications only, no price
+distribution:
+  model: exclusive-distributor
+  distributor: Tri-anim Health Services
+  source: https://www.prnewswire.com/news-releases/tri-anim-health-services-and-telesair-inc-announce-exclusive-us-distribution-agreement-for-bonhawa-high-flow-oxygen-therapy-device-302453825.html

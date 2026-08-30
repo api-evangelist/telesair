@@ -1,0 +1,75 @@
+generated: '2026-08-30'
+method: probed
+source: https://www.telesair.com/_api/mcp (live JSON-RPC probe) + https://www.telesair.com/llms.txt
+scope: >-
+  Telesair publishes no REST or GraphQL API and no developer documentation, so there are no
+  first-party API conventions to record. The cross-cutting semantics captured here are those of the
+  ONE machine surface it actually serves - the Wix Site Visitor Assistant MCP endpoint on its own
+  host - observed live rather than read from docs. Every field below is marked with what was
+  observed; nothing is inferred from prose.
+
+surface: https://www.telesair.com/_api/mcp
+protocol: JSON-RPC 2.0 over HTTP (MCP streamable-http)
+protocol_version: '2025-06-18'
+
+auth_style:
+  observed: none for discovery; self-service bearer visitorToken for the two write-capable tools
+  see: authentication/telesair-authentication.yml
+
+idempotency:
+  supported: false
+  state: undocumented
+  note: >-
+    No idempotency key header, parameter or retry semantics is declared in any tool inputSchema or
+    in llms.txt. No Idempotency pointer is emitted - there is nothing to point at.
+
+pagination:
+  style: null
+  note: Not applicable - no collection-returning first-party API exists.
+
+versioning:
+  style: protocol-version negotiation
+  observed: >-
+    The server answered initialize with protocolVersion 2025-06-18. There is no product API version,
+    no version header and no published versioning policy.
+
+error_envelope:
+  style: JSON-RPC 2.0 error object
+  fields: [jsonrpc, id, error.code, error.message]
+  note: Not RFC 9457; MCP tool errors ride the JSON-RPC envelope.
+
+request_id_tracing:
+  observed: true
+  headers:
+  - mcp-session-id
+  - x-wix-request-id
+  note: >-
+    Both are platform headers emitted by Wix/Cloudflare, observed on the live tools/list response.
+
+rate_limit_signaling:
+  observed: false
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was present on the probed responses.
+    See rate-limits/telesair-rate-limits.yml.
+
+field_expansion: null
+metadata: null
+
+reversibility:
+  state: undocumented
+  grade: documented_no
+  write_surface_present: true
+  note: >-
+    The surface is not read-only: CallWixSiteAPI and ExecuteWixAPI both act on a visitor's behalf and
+    ExecuteWixAPI requires the caller to declare hasMutations. Despite that, NO reversal operation
+    (cancel, refund, void, undo, restore) and NO reversal window is documented anywhere Telesair
+    publishes - there is no developer documentation at all. An agent that mutates through this
+    endpoint has no published means of determining whether the action can be taken back.
+    No window is asserted here because none is stated; inventing one would be the single most
+    expensive error available in this artifact.
+  operations: []
+  windows: []
+
+dry_run_mode:
+  state: na
+  note: No first-party API; no dry-run facility documented.

@@ -1,8 +1,19 @@
 aid: telesair
 name: Telesair
-description: 'Telesair is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Telesair, Inc. is a Southern California MedTech company, founded in 2020 and headquartered
+  in Irvine, California, that builds respiratory care hardware for patients with respiratory insufficiency.
+  Its flagship product is Bonhawa, a purpose-built High Flow Oxygen Therapy (HFOT) respiratory humidifier
+  that delivers warmed and humidified respiratory gases to spontaneously breathing pediatric and adult
+  patients (10 kg and up) across a 2-80 L/min flow range, with separate pediatric and adult modes, a streamlined
+  disinfection process and a touchscreen interface. Bonhawa holds both FDA 510(k) clearance (October 2023)
+  and the CE Mark under the European Medical Device Regulation (August 2023), and is distributed to US
+  hospitals under an exclusive agreement with Tri-anim Health Services. Telesair also supplies AVEA disposable
+  expiratory filters. Telesair is a medical device manufacturer rather than a software vendor: it publishes
+  no developer portal, no API reference and no machine-readable API contract. Its only machine-readable
+  agent surface is the Wix platform''s Site Visitor Assistant MCP endpoint and an llms.txt served from
+  its own marketing host.'
 url: https://raw.githubusercontent.com/api-evangelist/telesair/refs/heads/main/apis.yml
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
@@ -12,6 +23,13 @@ created: '2026-08-30'
 modified: '2026-08-30'
 tags:
 - Company
+- Medical Devices
+- Health Care
+- Respiratory Care
+- MedTech
+- Hardware
+- Oxygen Therapy
+- Hospital
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +37,56 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/telesair-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.telesair.com/
+- type: About
+  url: https://www.telesair.com/about-1
+- type: Support
+  url: https://www.telesair.com/contact-7
+- type: Blog
+  url: https://www.telesair.com/blog
+- type: PrivacyPolicy
+  url: https://www.telesair.com/privacy
+- type: FAQ
+  url: https://www.telesair.com/faqs
+- type: MCPServer
+  url: mcp/telesair-mcp.yml
+- type: LLMsTxt
+  url: llms/telesair-llms.txt
+- type: Authentication
+  url: authentication/telesair-authentication.yml
+- type: Conventions
+  url: conventions/telesair-conventions.yml
+- type: Conformance
+  url: conformance/telesair-conformance.yml
+- type: Plans
+  url: plans/telesair-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/telesair-rate-limits.yml
+x-enrichment:
+  date: '2026-08-30'
+  status: minimal
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: not-a-software-company
+  detail: Telesair is a medical device manufacturer whose product is the Bonhawa high-flow respiratory
+    humidifier, sold as bedside hardware to US hospitals through an exclusive Tri-anim distribution agreement;
+    its entire web presence is an 11-page Wix marketing site with no developer section, and the only machine-readable
+    surface on the domain is Wix's own platform-provided Site Visitor Assistant MCP endpoint, which returns
+    business details and site search rather than any Telesair product API.
+  evidence:
+  - url: https://www.telesair.com/pages-sitemap.xml
+    status: 200
+  - url: https://www.telesair.com/openapi.json
+    status: 400
+  - url: https://www.telesair.com/api-docs
+    status: 404
+  - url: https://www.telesair.com/_api/mcp
+    status: 200
+  - url: https://www.telesair.com/llms.txt
+    status: 200
+  checked: '2026-08-30'

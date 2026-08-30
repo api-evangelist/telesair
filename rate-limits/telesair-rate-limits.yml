@@ -1,0 +1,22 @@
+generated: '2026-08-30'
+method: probed
+source: https://www.telesair.com/_api/mcp (live response headers observed 2026-08-30)
+limit_count: 0
+limits: []
+note: >-
+  No rate limits are documented, because Telesair publishes no developer documentation. The one live
+  machine surface - the Wix Site Visitor Assistant MCP endpoint - was probed twice unauthenticated
+  and returned HTTP 200 both times with NO rate-limit signalling of any kind in its response
+  headers. An agent calling this endpoint has no runtime signal telling it how much budget it has
+  left or when to back off. An honest zero.
+headers_observed:
+  rate_limit_headers: []
+  checked_for: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, RateLimit, RateLimit-Policy, Retry-After]
+  present: []
+  other_headers_seen: [mcp-session-id, x-wix-request-id, cf-ray, cf-cache-status, x-robots-tag]
+exhaustion_status_code: null
+evidence:
+- url: https://www.telesair.com/_api/mcp
+  method: POST
+  status: 200
+  note: tools/list, unauthenticated; no rate-limit header on the response

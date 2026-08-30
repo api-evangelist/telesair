@@ -1,0 +1,39 @@
+generated: '2026-08-30'
+method: probed
+source: https://www.telesair.com/_api/mcp (live MCP initialize + tools/list)
+summary: >-
+  Telesair publishes no REST/GraphQL API and therefore declares no securitySchemes anywhere. The
+  only authenticated surface it exposes is the Wix Site Visitor Assistant MCP endpoint served from
+  its own host, whose auth model was established by live probe rather than from documentation.
+schemes:
+- id: mcp-anonymous
+  surface: https://www.telesair.com/_api/mcp
+  type: none
+  applies_to: [initialize, tools/list, GetBusinessDetails, SearchInSite, SearchSiteApiDocs, BrowseWixRESTDocsMenu, ReadFullDocsArticle, ReadFullDocsMethodSchema]
+  evidence: >-
+    POST initialize and POST tools/list both returned HTTP 200 with no Authorization header and no
+    OAuth challenge, probed 2026-08-30.
+- id: wix-visitor-token
+  surface: https://www.telesair.com/_api/mcp
+  type: http
+  scheme: bearer
+  in: tool-parameter
+  parameter: visitorToken
+  applies_to: [CallWixSiteAPI, ExecuteWixAPI]
+  issuance: self-service
+  issuance_tool: GenerateVisitorToken
+  evidence: >-
+    The GenerateVisitorToken tool mints an anonymous visitor session token with no credential; both
+    write-capable tools declare visitorToken as a required inputSchema property.
+oauth: false
+openid_connect: false
+mutual_tls: false
+api_keys: false
+scopes: null
+scopes_note: >-
+  No OAuth surface exists, so no scopes/ artifact is emitted. /.well-known/oauth-authorization-server
+  and /.well-known/oauth-protected-resource both returned HTTP 400 (Wix catch-all).
+docs: null
+docs_note: >-
+  Telesair publishes no authentication documentation of any kind; this profile is derived entirely
+  from the live MCP handshake.

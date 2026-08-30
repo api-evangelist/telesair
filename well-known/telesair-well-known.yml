@@ -1,0 +1,44 @@
+generated: '2026-08-30'
+method: probed
+source: live HTTPS probes of https://www.telesair.com/.well-known/*
+note: >-
+  Every /.well-known/ path probed on Telesair's only public host returned HTTP 400 with an HTML
+  error page. This is the Wix platform catch-all: Wix does not route /.well-known/* for this site,
+  so it answers 400 (not 404) with a rendered HTML shell for every path, including paths that do
+  not exist anywhere. No well-known document is served, so NO WellKnown or SecurityTxt pointer is
+  emitted - this file records a verified absence, not a presence.
+hosts:
+- host: www.telesair.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/openid-configuration
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/oauth-protected-resource
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/api-catalog
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/ai-plugin.json
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/agent-card.json
+    status: 400
+    file: null
+    note: HTML error shell, not a document
+  - path: /.well-known/agent.json
+    status: 400
+    file: null
+    note: HTML error shell, not a document

@@ -1,0 +1,76 @@
+generated: '2026-08-30'
+method: probed
+source: https://www.telesair.com/_api/mcp + https://www.telesair.com/llms.txt + probed /.well-known/*
+summary: >-
+  Telesair is a medical device manufacturer with no first-party API, so nearly every cross-cutting
+  API standard is simply not applicable. The one standard it genuinely implements - by virtue of its
+  Wix hosting - is the Model Context Protocol, which was confirmed by live handshake.
+standards:
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  version: '2025-06-18'
+  evidence: >-
+    POST initialize to https://www.telesair.com/_api/mcp returned HTTP 200 with
+    protocolVersion 2025-06-18, serverInfo and a tools capability; POST tools/list returned 9 tools
+    with valid inputSchema objects. Probed 2026-08-30.
+  note: Platform-provided by Wix, not authored by Telesair.
+- id: jsonrpc-2.0
+  name: JSON-RPC 2.0
+  conforms: true
+  evidence: All MCP responses carry "jsonrpc":"2.0" with matching request id. Probed 2026-08-30.
+- id: llmstxt
+  name: llms.txt
+  conforms: true
+  evidence: https://www.telesair.com/llms.txt returns HTTP 200, text/plain, 3319 bytes, valid llms.txt shape.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returned HTTP 400; the MCP endpoint issues no OAuth challenge.
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returned HTTP 400.
+- id: rfc9457
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence: No application/problem+json surface exists; MCP errors use the JSON-RPC error object.
+- id: rfc9116
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: /.well-known/security.txt returned HTTP 400 (Wix catch-all HTML shell).
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  evidence: >-
+    /openapi.json, /openapi.yaml, /swagger.json all returned HTTP 400 and /api-docs returned 404 on
+    the only public host; no OpenAPI is published anywhere.
+domain_standards:
+- id: hl7-fhir
+  name: HL7 / FHIR
+  conforms: false
+  evidence: >-
+    Bonhawa is a standalone bedside respiratory humidifier. Neither the product page, the FAQ, nor
+    the instruction-manual library mentions EMR/EHR integration, HL7, FHIR, IEEE 11073 or any device
+    interoperability profile. Searched 2026-08-30 - no domain-standard claim is made by the provider.
+  note: >-
+    Reward-only check. Telesair's market (respiratory hardware) does have interoperability standards,
+    but Telesair declares conformance to none of them in any contract, so none is recorded.
+certifications:
+- id: fda-510k
+  name: FDA 510(k) clearance
+  scope: Bonhawa High Flow Oxygen Therapy System
+  date: '2023-10'
+  evidence: https://www.businesswire.com/news/home/20231017303952/en/Telesair-Receives-FDA-Clearance-for-Bonhawa-High-Flow-Oxygen-Therapy-System
+  note: Medical device regulatory clearance, not an information-security or API certification.
+- id: ce-mark-mdr
+  name: CE Mark under EU Medical Device Regulation
+  scope: Bonhawa High Flow Oxygen Therapy System
+  date: '2023-08'
+  evidence: https://www.biospace.com/telesair-receives-ce-mark-for-bonhawa-high-flow-oxygen-therapy-system
+  note: Medical device regulatory clearance, not an information-security or API certification.
+compliance_note: >-
+  No Compliance pointer is emitted. Telesair publishes no trust center and names no information
+  security or privacy certification (SOC 2, ISO 27001, HIPAA, PCI, FedRAMP); trust.telesair.com,
+  /trust, /security and /compliance were all probed and none exists. The FDA and CE clearances above
+  are product regulatory clearances and are recorded here as facts, not as an API compliance program.
