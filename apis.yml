@@ -13,6 +13,21 @@ description: 'Telesair, Inc. is a Southern California MedTech company, founded i
   agent surface is the Wix platform''s Site Visitor Assistant MCP endpoint and an llms.txt served from
   its own marketing host.'
 url: https://raw.githubusercontent.com/api-evangelist/telesair/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  probe_state: none
+  source:
+  - authentication
+  - rate-limits
+  - security
+  generated: '2026-09-03'
+  method: derived
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 x-type: company
 x-source: harvest:secondary-market
