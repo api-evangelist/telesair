@@ -2,26 +2,28 @@ generated: '2026-08-30'
 method: probed
 source: https://www.telesair.com/_api/mcp
 name: Telesair Site Visitor Assistant (Wix Site MCP)
-description: >-
-  Telesair serves a live, unauthenticated remote MCP endpoint from its own marketing host at
-  https://www.telesair.com/_api/mcp. It is the Wix platform's "Site Visitor Assistant" server,
-  provisioned by Wix for sites it hosts, and advertised by Telesair's own llms.txt under an
-  "AI Agent Access" heading. It is PLATFORM-AUTHORED, not authored by Telesair: the tool set is
-  the generic Wix site-visitor tool set (business details, site search, Wix REST docs browsing,
-  and a sandboxed call/execute pair against the Wix API on a visitor's behalf), not an interface
-  to any Telesair product, device or respiratory-care data. Telesair publishes no first-party API
-  and no OpenAPI, so this is the only machine-readable agent surface it exposes.
+description: 'Telesair serves a live, unauthenticated remote MCP endpoint from its own marketing host
+  at https://www.telesair.com/_api/mcp. It is the Wix platform''s "Site Visitor Assistant" server, provisioned
+  by Wix for sites it hosts, and advertised by Telesair''s own llms.txt under an "AI Agent Access" heading.
+  It is PLATFORM-AUTHORED, not authored by Telesair: the tool set is the generic Wix site-visitor tool
+  set (business details, site search, Wix REST docs browsing, and a sandboxed call/execute pair against
+  the Wix API on a visitor''s behalf), not an interface to any Telesair product, device or respiratory-care
+  data. Telesair publishes no first-party API and no OpenAPI, so this is the only machine-readable agent
+  surface it exposes.'
 status: live
 authored_by: platform
 platform: Wix
 platform_docs: https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp
-
 deployment:
   mode: remote
   endpoint: https://www.telesair.com/_api/mcp
   auth: none
   verified: probed
-
+  probe_prior: (never probed)
+  probe: live
+  probe_why: live
+  checked: '2026-09-11'
+  source: claimed-backlog re-probe 2026-09-11
 x-evidence:
   fetched: '2026-08-30'
   initialize:
@@ -29,9 +31,11 @@ x-evidence:
     method: POST
     http_status: 200
     protocol_version: '2025-06-18'
-    server_name: 'Site Visitor Assistant for site "Telesair" (https://www.telesair.com/_api/mcp)'
+    server_name: Site Visitor Assistant for site "Telesair" (https://www.telesair.com/_api/mcp)
     server_version: 1.0.0
-    capabilities: [tools.listChanged, logging]
+    capabilities:
+    - tools.listChanged
+    - logging
   tools_list:
     url: https://www.telesair.com/_api/mcp
     method: POST
@@ -41,63 +45,84 @@ x-evidence:
     saved_verbatim: mcp/telesair-mcp-tools-list.json
     session_header: mcp-session-id
   advertised_in: https://www.telesair.com/llms.txt
-
 transport: streamable-http
 protocol_version: '2025-06-18'
 tool_count: 9
-
 tools:
 - name: GetBusinessDetails
   parameters: []
   description: Returns business and site details for Telesair - timezone, email, phone, fax, address.
 - name: SearchInSite
-  parameters: [searchTerm]
-  required: [searchTerm]
+  parameters:
+  - searchTerm
+  required:
+  - searchTerm
   description: Full-text search across the public Telesair site content.
 - name: SearchSiteApiDocs
-  parameters: [searchTerm]
-  required: [searchTerm]
-  description: >-
-    Searches the API documentation for the Wix business solutions installed on this site and returns
-    how to drive them. This describes WIX solution APIs available to the site, not a Telesair API.
+  parameters:
+  - searchTerm
+  required:
+  - searchTerm
+  description: Searches the API documentation for the Wix business solutions installed on this site and
+    returns how to drive them. This describes WIX solution APIs available to the site, not a Telesair
+    API.
 - name: GenerateVisitorToken
   parameters: []
-  description: >-
-    Mints an anonymous visitor session and access token. Required before CallWixSiteAPI or
+  description: Mints an anonymous visitor session and access token. Required before CallWixSiteAPI or
     ExecuteWixAPI - this is the auth step, and it is self-service with no credential.
 - name: CallWixSiteAPI
-  parameters: [visitorToken, url, method, body]
-  required: [visitorToken, url, method]
-  description: >-
-    Calls a Wix API method on the visitor's behalf (query site data, book, start a purchase).
+  parameters:
+  - visitorToken
+  - url
+  - method
+  - body
+  required:
+  - visitorToken
+  - url
+  - method
+  description: Calls a Wix API method on the visitor's behalf (query site data, book, start a purchase).
     Write-capable.
 - name: ExecuteWixAPI
-  parameters: [code, reason, hasMutations, sourceDocUrls, visitorToken]
-  required: [code, reason, hasMutations, sourceDocUrls, visitorToken]
-  description: >-
-    Runs JavaScript against the Wix REST API in a sandbox on the visitor's behalf. Carries an
-    explicit hasMutations flag the caller must set. Write-capable.
+  parameters:
+  - code
+  - reason
+  - hasMutations
+  - sourceDocUrls
+  - visitorToken
+  required:
+  - code
+  - reason
+  - hasMutations
+  - sourceDocUrls
+  - visitorToken
+  description: Runs JavaScript against the Wix REST API in a sandbox on the visitor's behalf. Carries
+    an explicit hasMutations flag the caller must set. Write-capable.
 - name: BrowseWixRESTDocsMenu
-  parameters: [menuUrl, reason]
-  required: [reason]
+  parameters:
+  - menuUrl
+  - reason
+  required:
+  - reason
   description: Navigates the Wix REST API documentation menu hierarchy to discover APIs.
 - name: ReadFullDocsArticle
-  parameters: [articleUrl]
-  required: [articleUrl]
+  parameters:
+  - articleUrl
+  required:
+  - articleUrl
   description: Fetches a full article from the Wix developer documentation portal.
 - name: ReadFullDocsMethodSchema
-  parameters: [articleUrl, reason]
-  required: [articleUrl, reason]
+  parameters:
+  - articleUrl
+  - reason
+  required:
+  - articleUrl
+  - reason
   description: Fetches the full request/response schema for a Wix API method.
-
 notes:
-- >-
-  The 9 tools carry real inputSchema definitions, retrieved live and unauthenticated; the verbatim
-  tools/list response is saved to mcp/telesair-mcp-tools-list.json.
-- >-
-  None of the tools expose Bonhawa device telemetry, order status, clinical data or any other
-  Telesair product surface. An agent can learn about the company and search the marketing site; it
-  cannot integrate with a Telesair product.
-- >-
-  No tool crosswalk is emitted: a crosswalk binds MCP tools to backing OpenAPI operationIds and
-  Telesair publishes no OpenAPI, so there is nothing to bind against.
+- The 9 tools carry real inputSchema definitions, retrieved live and unauthenticated; the verbatim tools/list
+  response is saved to mcp/telesair-mcp-tools-list.json.
+- None of the tools expose Bonhawa device telemetry, order status, clinical data or any other Telesair
+  product surface. An agent can learn about the company and search the marketing site; it cannot integrate
+  with a Telesair product.
+- 'No tool crosswalk is emitted: a crosswalk binds MCP tools to backing OpenAPI operationIds and Telesair
+  publishes no OpenAPI, so there is nothing to bind against.'
