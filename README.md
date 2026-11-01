@@ -64,5 +64,101 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Telesair is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+Telesair, Inc. is a Southern California MedTech company, founded in 2020 and headquartered in Irvine, California, that builds respiratory care hardware for patients with respiratory insufficiency. Its flagship product is Bonhawa, a purpose-built High Flow Oxygen Therapy (HFOT) respiratory humidifier that delivers warmed and humidified respiratory gases to spontaneously breathing pediatric and adult patients (10 kg and up) across a 2-80 L/min flow range, with separate pediatric and adult modes, a streamlined disinfection process and a touchscreen interface. Bonhawa holds both FDA 510(k) clearance (October 2023) and the CE Mark under the European Medical Device Regulation (August 2023), and is distributed to US hospitals under an exclusive agreement with Tri-anim Health Services. Telesair also supplies AVEA disposable expiratory filters. Telesair is a medical device manufacturer rather than a software vendor: it publishes no developer portal, no API reference and no machine-readable API contract. Its only machine-readable agent surface is the Wix platform's Site Visitor Assistant MCP endpoint and an llms.txt served from its own marketing host.
+
+**Areas:** Company · Medical Devices · Healthcare · Respiratory Care · Medical Technology · Hardware · Oxygen Therapy · Hospitals
+
+## Telesair on APIs.io
+
+Everything profiled for Telesair is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/telesair/](https://apis.io/providers/telesair/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Telesair Site Visitor Assistant (Wix Site MCP)](https://apis.io/servers/telesair/telesair-site-visitor-assistant-wix-site-mcp/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Telesair Authentication](https://apis.io/security/telesair/telesair-authentication/)
+- [Telesair Domain Security](https://apis.io/security/telesair/telesair-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Telesair Plans Pricing](https://apis.io/plans/telesair/telesair-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Telesair Rate Limits](https://apis.io/rate-limits/telesair/telesair-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.telesair.com/)
+- [Support](https://www.telesair.com/contact-7)
+- [Blog](https://www.telesair.com/blog)
+- [Privacy policy](https://www.telesair.com/privacy)
+
+## API Evangelist rating
+
+**Kin Score 14.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.3 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 10.5 |
+
+**Agent readiness 7.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/telesair/](https://apis.io/providers/telesair/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Telesair: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/telesair/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
